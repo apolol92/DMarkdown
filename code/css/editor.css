@@ -1,12 +1,17 @@
 .editor {
     width:50%;
-    height:100%;
+    height:95%;
     float:left;
+}
+
+.editor > button {
+    width:9%;
+    height: 5%;
 }
 .code-column {
     float: left;
     width: 100%;
-    height: 100%;
+    height: 95%;
 }
         
 .code-column h2 {
