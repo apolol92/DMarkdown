@@ -10,7 +10,8 @@ flask.run('#code', {
 });
 
 flask.onUpdate(function (code) {
-    styleTag.innerHTML = code;
+    //styleTag.innerHTML = code;
+    console.log("updated..");
 });
 
 flask.update("### Docker\nDillinger is very easy to install and deploy in a Docker container.");
