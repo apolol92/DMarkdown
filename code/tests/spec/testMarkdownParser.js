@@ -23,6 +23,12 @@ describe("MarkdownParser", function() {
         var expected = "<h2>Hallo</h2>\n";
         expect(result).toEqual(expected);
     });
+    it("Should parse '<ul>\\n<li>test1</li>\\n<li>test2</li>\\n</ul>\\n'..", function() {
+        var dParser = new MarkdownParser();
+        var result = dParser.toHtml("* test1\n* test2");
+        var expected = "<ul>\n<li>test1</li>\n<li>test2</li>\n</ul>\n";
+        expect(result).toEqual(expected);
+    });
    
 
 });

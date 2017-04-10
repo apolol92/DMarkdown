@@ -1,5 +1,5 @@
 class SpanElement {
-    
+
 }
 
 class BlockElement {
@@ -21,8 +21,7 @@ class H1Block extends WeakBlock {
     }
 
     getHtml() {
-        console.log(super.markdown);
-         return "<h1>" + this.markdown.substring(2) + "</h1>";
+        return "<h1>" + this.markdown.substring(2) + "</h1>";
     }
 }
 
@@ -37,6 +36,28 @@ class H2Block extends WeakBlock {
 }
 
 class StrongBlock extends BlockElement {
+    constructor(markdownLines) {
+        super(markdownLines);
+    }
+
+}
+
+class ListBlock extends StrongBlock {
+    constructor(markdownLines) {
+        super(markdownLines);
+    }
+    getHtml() {
+        var html = "<ul>\n";
+        for (var i = 0; i < this.markdown.length; i++) {
+            var currentStr = this.markdown[i];
+            console.log(currentStr);
+            if (currentStr.indexOf("* ")==0) {
+                html = html + "<li>" + currentStr.substring(2) + "</li>\n"
+            }
+        }
+        html = html + "</ul>"
+        return html;
+    }
 
 }
 
@@ -50,23 +71,28 @@ class MarkdownParser {
         var markdownLines = this.splitMarkdownIntoLines(markdown);
         var currentBlock;
         var blocks = [];
-        for(var i = 0; i < markdownLines.length; i++) {
+        var listing = false;
+        for (var i = 0; i < markdownLines.length; i++) {
             var currentStr = String(markdownLines[i]);
-            if(currentStr.match("^# ")) {
+            if (currentStr.indexOf("# ")==0) {
                 currentBlock = new H1Block(currentStr);
                 blocks.push(currentBlock);
+                listing = false;
             }
-            else if(currentStr.match("^## ")) {
+            else if (currentStr.indexOf("## ")==0) {
                 currentBlock = new H2Block(currentStr);
                 blocks.push(currentBlock);
+                listing = false;
             }
-            else if(currentStr.match("^* ")) {
-                currentBlock = new ListBlock(currentStr);
+            else if (currentStr.indexOf("* ")==0 && listing == false) {
+                currentBlock = new ListBlock(markdownLines.slice(i,markdownLines.length));
+                blocks.push(currentBlock);
+                listing = true;
             }
         }
         var html = "";
-        for(var i = 0; i < blocks.length; i++) {
-            html = html + blocks[i].getHtml()+"\n";
+        for (var i = 0; i < blocks.length; i++) {
+            html = html + blocks[i].getHtml() + "\n";
         }
         return html;
     }
