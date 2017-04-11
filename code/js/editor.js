@@ -1,8 +1,8 @@
 
-var styleTag = document.createElement("STYLE"),
-    flask = new CodeFlask;
+var markdown = require( "markdown" ).markdown;
+var styleTag = document.createElement("HTML"), flask = new CodeFlask;
 
-document.querySelector('head').appendChild(styleTag);
+document.querySelector('#previewField').appendChild(styleTag);
 
 flask.run('#code', {
     language: 'markdown',
@@ -10,8 +10,7 @@ flask.run('#code', {
 });
 
 flask.onUpdate(function (code) {
-    //styleTag.innerHTML = code;
-    console.log("updated..");
+    styleTag.innerHTML = markdown.toHTML( code );
 });
 
 flask.update("### Docker\nDillinger is very easy to install and deploy in a Docker container.");
