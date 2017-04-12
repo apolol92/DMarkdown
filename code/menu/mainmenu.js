@@ -21,12 +21,17 @@ function sendFilenameToRenderer(focusedWindow, filename) {
   focusedWindow.send("filename2Save", { msg: filename });
 }
 
+function sendFilenameToRendererForExporting(focusedWindow, filename) {
+  focusedWindow.send("filename2export", { msg: filename });
+}
+
 const template = [
   {
     label: 'Datei',
     submenu: [
       {
         label: 'speichern',
+        accelerator: 'Ctrl+S',
         click(item, focusedWindow) {
           const { dialog } = require("electron");
           if (currentFilename == undefined) {
@@ -47,6 +52,7 @@ const template = [
       },
       {
         label: 'speichern als',
+        accelerator: 'Ctrl+Shift+S',
         click(item, focusedWindow) {
           const { dialog } = require("electron");
           dialog.showSaveDialog((fileName) => {
@@ -62,10 +68,28 @@ const template = [
 
       },
       {
-        label: 'exportieren'
+        label: 'exportieren',
+        accelerator: 'Ctrl+E',
+        click(item, focusedWindow) {
+          const { dialog } = require("electron");
+          dialog.showSaveDialog({
+            filters: [
+              { name: 'HTML', extensions: ['html'] },
+              { name: 'PDF', extensions: ['pdf'] }
+            ]
+          }, (fileName) => {
+            if (fileName === undefined) {
+              console.log("You didn't save the file");
+              return;
+            }
+            currentFilename = fileName;
+            sendFilenameToRendererForExporting(focusedWindow, fileName);
+          });
+        },
       },
       {
         label: 'laden',
+
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
           const { dialog } = require('electron')

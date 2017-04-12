@@ -26,12 +26,23 @@ ipcRenderer.on('info', function (event, data) {
 ipcRenderer.on("filename2Save", function (event, data) {
     const fs = require("fs");
     //fs.writeFile(data.msg, document.)
-    
+
     fs.writeFile(data.msg, flask.textarea.value, (err) => {
-        if(err){
-            alert("An error ocurred creating the file "+ err.message)
+        if (err) {
+            alert("An error ocurred creating the file " + err.message)
             return;
         }
     });
 })
 
+ipcRenderer.on("filename2export", function (event, data) {
+    const fs = require("fs");
+    //fs.writeFile(data.msg, document.)
+
+    fs.writeFile(data.msg, document.getElementById("previewField").innerHTML, (err) => {
+        if (err) {
+            alert("An error ocurred creating the file " + err.message)
+            return;
+        }
+    });
+})
