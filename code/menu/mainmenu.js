@@ -1,7 +1,7 @@
 const { Menu } = require('electron')
 const electron = require('electron')
 const app = electron.app;
-
+var currentFilename = undefined;
 const { ipcMain } = require('electron')
 
 function readFile(filepath, focusedWindow) {
@@ -17,15 +17,49 @@ function readFile(filepath, focusedWindow) {
   });
 }
 
+function sendFilenameToRenderer(focusedWindow, filename) {
+  focusedWindow.send("filename2Save", { msg: filename });
+}
+
 const template = [
   {
     label: 'Datei',
     submenu: [
       {
-        label: 'speichern'
+        label: 'speichern',
+        click(item, focusedWindow) {
+          const { dialog } = require("electron");
+          if (currentFilename == undefined) {
+            dialog.showSaveDialog((fileName) => {
+              if (fileName === undefined) {
+                console.log("You didn't save the file");
+                return;
+              }
+              currentFilename = fileName;
+              sendFilenameToRenderer(focusedWindow, fileName);
+
+            });
+          }
+          else {
+            sendFilenameToRenderer(focusedWindow, currentFilename);
+          }
+        }
       },
       {
-        label: 'speichern als'
+        label: 'speichern als',
+        click(item, focusedWindow) {
+          const { dialog } = require("electron");
+          dialog.showSaveDialog((fileName) => {
+            if (fileName === undefined) {
+              console.log("You didn't save the file");
+              return;
+            }
+            currentFilename = fileName;
+            sendFilenameToRenderer(focusedWindow, fileName);
+
+          });
+        }
+
       },
       {
         label: 'exportieren'
