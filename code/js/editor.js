@@ -12,8 +12,12 @@ flask.run('#code', {
 
 flask.onUpdate(function (code) {
     styleTag.innerHTML = markdown.toHTML( code );
-    console.log(codeBox.selectionStart);
 });
 
 flask.update("### Docker\nDillinger is very easy to install and deploy in a Docker container.");
 
+const {ipcRenderer} = require('electron')
+ipcRenderer.on('info', function (event, data) { 
+    console.log(data.msg) 
+    flask.update(data.msg);
+});

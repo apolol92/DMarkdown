@@ -5,6 +5,7 @@ const url = require("url")
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
+
 function createWindow() {
     //Create the browser window
     win = new BrowserWindow(
@@ -27,6 +28,8 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
+    require('./menu/mainmenu')
+    
 }
 
 // This method will be called when Electron has finished
