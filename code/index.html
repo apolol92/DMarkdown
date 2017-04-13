@@ -6,23 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMarkdown</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+
+  <!-- Create a simple CodeMirror instance -->
+  <link rel="stylesheet" href="plugins/codemirror/lib/codemirror.css">
+  <script type="text/javascript" src="plugins/codemirror/lib/codemirror.js"></script>
+  <script type="text/javascript" src="plugins/codemirror/mode/markdown/markdown.js"></script>
+
   <link rel="stylesheet" href="css/general.css">
   <link rel="stylesheet" href="css/editor.css">
   <link rel="stylesheet" href="css/preview.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/codeflask.css">
-  <link rel="stylesheet" href="css/prism.css" />
-  <script src="js/prism.js"></script>
-  <script src="js/codeflask.js"></script>
 
 </head>
 
 <body style="background: #f5f5f5;">
   <div class="editor">
-    <div class="code-column">
-      <div class="codeview" id="code" data-language="markdown"></div>
-    </div>
+    <textarea id="codeeditor"></textarea>
   </div>
   <div class="preview">
     <!-- Preview-Area -->
