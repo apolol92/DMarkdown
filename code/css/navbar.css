@@ -8,7 +8,7 @@
 #navbarleft {
     width: 50%;
     float:left;
-    background: #252526;
+    background: transparent;
     padding-left:25px;
     border-right: solid #393939 1px;
 }
@@ -16,7 +16,7 @@
 #navbarright {
     width: 50%;
     float:left;
-    background: #252526;
+    background: transparent;
     padding-left: 10px;
 }
 
