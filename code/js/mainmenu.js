@@ -4,6 +4,7 @@ const app = electron.app;
 var currentFilename = undefined;
 const { ipcMain } = require('electron')
 
+
 function readFile(filepath, focusedWindow) {
   const fs = require('fs');
   fs.readFile(filepath, 'utf-8', (err, data) => {
@@ -113,45 +114,19 @@ const template = [
         label: 'Rückgängig',
         accelerator: 'Ctrl+Z',
         click(item, focusedWindow) {
+           console.log("undo");
           focusedWindow.send("undo", { msg: "data" });  
         }
       },
       {
         label: 'Wiederholen',
-        accelerator: "Ctrl+Y",
+        accelerator: 'Ctrl+Y',
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
+          console.log("redo");
           focusedWindow.send("redo", { msg: "data" });
         }
-      },
-      {
-        label: 'Suchen und Ersetzen',
-        accelerator: "Ctrl+ALT+F",
-        click(item, focusedWindow) {
-          
-          console.log("SUCHEN UND ERSETZEN");
-        }
       }
-    ]
-  },
-  {
-    label: "Ansicht",
-    submenu: [
-      {
-        label: "Markdown vergrößern"
-      },
-      {
-        label: "Markdown verkleinern"
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: "HTML vergrößern"
-      },
-      {
-        label: "HTML verkleinern"
-      },
     ]
   },
   {
