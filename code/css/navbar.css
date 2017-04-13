@@ -1,14 +1,14 @@
 #navbar {
     padding: 5px;
     padding-bottom: 20px;
-    background: #1d1d1b;
+    background: #252526;
     width:100%;
 }
 
 #navbarleft {
     width: 50%;
     float:left;
-    background: #1d1d1b;
+    background: #252526;
     padding-left:25px;
     border-right: solid #393939 1px;
 }
@@ -16,7 +16,7 @@
 #navbarright {
     width: 50%;
     float:left;
-    background: #1d1d1b;
+    background: #252526;
     padding-left: 10px;
 }
 
