@@ -12,7 +12,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
     lineNumbers: true,
     mode: "markdown"    
 });
-
+editor.setSize("100%","100%");
 editor.on("change", function() {
     var code = editor.getValue();
     console.log(code);
