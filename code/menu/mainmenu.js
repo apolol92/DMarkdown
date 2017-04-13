@@ -123,7 +123,35 @@ const template = [
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
           focusedWindow.send("info", { msg: "Hello from main process" });
         }
+      },
+      {
+        label: 'Suchen und Ersetzen',
+        accelerator: "Ctrl+ALT+F",
+        click(item, focusedWindow) {
+          
+          console.log("SUCHEN UND ERSETZEN");
+        }
       }
+    ]
+  },
+  {
+    label: "Ansicht",
+    submenu: [
+      {
+        label: "Markdown vergrößern"
+      },
+      {
+        label: "Markdown verkleinern"
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: "HTML vergrößern"
+      },
+      {
+        label: "HTML verkleinern"
+      },
     ]
   },
   {
