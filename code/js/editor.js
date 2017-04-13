@@ -58,8 +58,8 @@ ipcRenderer.on("filename2Save", function (event, data) {
 ipcRenderer.on("filename2export", function (event, data) {
     const fs = require("fs");
     //fs.writeFile(data.msg, document.)
-
-    fs.writeFile(data.msg, document.getElementById("previewField").innerHTML, (err) => {
+    var html = "<html>\n<head></head>\n<body>\n"+document.getElementById("previewField").innerHTML+"\n</body>\n</html>";
+    fs.writeFile(data.msg,html, (err) => {
         if (err) {
             alert("An error ocurred creating the file " + err.message)
             return;
@@ -67,61 +67,4 @@ ipcRenderer.on("filename2export", function (event, data) {
     });
 });
 
-/*
-flask.onUpdate(function (code) {
-    styleTag.innerHTML = markdown.toHTML(code);
-    dRedoer.controlledActionAdding(code);
-    if(!wasRedo && !wasUndo) {
-        dRedoer.clearRedo();
-    }
-    wasRedo = false;
-    wasUndo = false;
-    //console.log(flask.textarea.selectionStart);
-    //flask.textarea.setSelectionRange(0, 0);
-});
 
-flask.update("### Docker\nDillinger is very easy to install and deploy in a Docker container.");
-
-ipcRenderer.on('info', function (event, data) {
-    console.log(data.msg)
-    flask.update(data.msg);
-});
-
-ipcRenderer.on("undo", function(event, data) {
-    var currentState = dRedoer.undoAction();
-    wasUndo = true;
-    flask.update(currentState);
-
-});
-
-ipcRenderer.on("redo", function(event, data) {
-    var currentState = dRedoer.redoAction();
-    wasRedo = true;
-    flask.update(currentState);
-
-});
-
-ipcRenderer.on("filename2Save", function (event, data) {
-    const fs = require("fs");
-    //fs.writeFile(data.msg, document.)
-
-    fs.writeFile(data.msg, flask.textarea.value, (err) => {
-        if (err) {
-            alert("An error ocurred creating the file " + err.message)
-            return;
-        }
-    });
-})
-
-ipcRenderer.on("filename2export", function (event, data) {
-    const fs = require("fs");
-    //fs.writeFile(data.msg, document.)
-
-    fs.writeFile(data.msg, document.getElementById("previewField").innerHTML, (err) => {
-        if (err) {
-            alert("An error ocurred creating the file " + err.message)
-            return;
-        }
-    });
-})
-*/
