@@ -113,7 +113,7 @@ const template = [
         label: 'Rückgängig',
         accelerator: 'Ctrl+Z',
         click(item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload()
+          focusedWindow.send("undo", { msg: "data" });  
         }
       },
       {
@@ -121,7 +121,7 @@ const template = [
         accelerator: "Ctrl+Y",
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-          focusedWindow.send("info", { msg: "Hello from main process" });
+          focusedWindow.send("redo", { msg: "data" });
         }
       },
       {

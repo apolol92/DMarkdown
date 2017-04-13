@@ -41,4 +41,12 @@ describe("DRedo", function () {
         var result = dRedoer.redoAction();
         expect(result).toEqual(currentAction);
     });
+    it("should get 'Hallo Welt!'", function() {
+        var action = "Hallo Welt";
+        var dRedoer = new DRedoModule.DRedo();
+        dRedoer.controlledActionAdding(action);
+        dRedoer.undoAction();
+        var result = dRedoer.redoAction();
+        expect(result).toEqual(action);
+    });
 });

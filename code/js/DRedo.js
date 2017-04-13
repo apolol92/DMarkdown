@@ -31,24 +31,20 @@ class DRedo {
         else {
             var undoHeadLength = this.getUndoStackHead().length;
             var distance = action.length - undoHeadLength;
-            if (distance > 5) {
+            if (Math.abs(distance) > 5) {
                 this._newAction(action);
                 return action;
-            }
-            else {
-                this._clearRedo();
             }
         }
         return "";
 
     }
 
-    _clearRedo() {
+    clearRedo() {
         this.redoStack = [];
     }
 
     _newAction(action) {
-        this._clearRedo();
         this.undoStack.push(action);
         return action;
     }

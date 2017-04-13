@@ -28,7 +28,7 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null;
     });
-    require('./menu/mainmenu')
+    require('./js/mainmenu')
     
 }
 
