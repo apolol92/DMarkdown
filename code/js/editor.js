@@ -1,32 +1,26 @@
 const { ipcRenderer } = require('electron')
-var DRedoModule = require('./js/DRedo')
 var markdown = require("markdown").markdown;
 
 
-//document.querySelector('#previewField').appendChild(styleTag);
 var editor = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
     lineNumbers: true,
-    mode: "markdown"    
+    mode: "markdown",
+    theme: "icecoder",
+    scrollbarStyle:"simple"
 });
-//editor.style("width:100%;height:100%;")
-//editor.setSize("100%","100%");
 editor.on("change", function() {
     var code = editor.getValue();
-    console.log(code);
     var preview = document.getElementById("previewField");
     preview.innerHTML = markdown.toHTML(code);
-    dRedoer.controlledActionAdding(code);
-    if(!wasRedo && !wasUndo) {
-        dRedoer.clearRedo();
-    }
-    wasRedo = false;
-    wasUndo = false;
+    document.getElementById("cursorRow").innerHTML = editor.getCursor().line;
 });
 
-
+editor.on("cursorActivity", function() {
+    document.getElementById("cursorRow").innerHTML = editor.getCursor().line+1;
+    document.getElementById("cursorCol").innerHTML = editor.getCursor().ch+1;
+});
 
 ipcRenderer.on('info', function (event, data) {
-    console.log(data.msg)
     editor.setValue(data.msg);
 });
 

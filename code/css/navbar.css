@@ -1,24 +1,26 @@
 #navbar {
     padding: 5px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    background: #1d1d1b;
     width:100%;
 }
 
 #navbarleft {
     width: 50%;
     float:left;
-
+    background: #1d1d1b;
     padding-left:25px;
 }
 
 #navbarright {
     width: 50%;
     float:left;
+    background: #1d1d1b;
     padding-left: 10px;
 }
 
 .title {
     text-transform: uppercase;
     font-size: small;
-    color: #9a9a9a;
+    color: #666666;
 }

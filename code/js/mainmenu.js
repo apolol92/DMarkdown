@@ -1,8 +1,5 @@
-const { Menu } = require('electron')
-const electron = require('electron')
-const app = electron.app;
+const { Menu, electron, app, ipcMain} = require('electron')
 var currentFilename = undefined;
-const { ipcMain } = require('electron')
 
 
 function readFile(filepath, focusedWindow) {

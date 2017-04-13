@@ -1,6 +1,8 @@
 .footer {
-    height: 5%;
-    background: red;
+    height: 50px;
     clear: both;
     vertical-align: bottom;
+    background: #007acc;
+    color: white;
+    padding-left:30px;
 }

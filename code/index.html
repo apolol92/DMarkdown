@@ -9,8 +9,11 @@
 
   <!-- Create a simple CodeMirror instance -->
   <link rel="stylesheet" href="plugins/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="plugins/codemirror/theme/icecoder.css">
+  <link rel="stylesheet" href="plugins/codemirror/addon/scroll/simplescrollbars.css">
   <script type="text/javascript" src="plugins/codemirror/lib/codemirror.js"></script>
   <script type="text/javascript" src="plugins/codemirror/mode/markdown/markdown.js"></script>
+  <script type="text/javascript" src="plugins/codemirror/addon/scroll/simplescrollbars.js"></script>
 
   <link rel="stylesheet" href="css/general.css">
   <link rel="stylesheet" href="css/navbar.css">
@@ -35,6 +38,9 @@
   <div class="preview">
     <!-- Preview-Area -->
     <div id="previewField"></div>
+  </div>
+  <div class="footer">
+    Zeile <span id="cursorRow">1</span>, Spalte <span id="cursorCol">1</span>
   </div>
   <script>
 
