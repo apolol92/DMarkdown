@@ -10,6 +10,7 @@
     float:left;
     background: #1d1d1b;
     padding-left:25px;
+    border-right: solid #393939 1px;
 }
 
 #navbarright {
@@ -23,4 +24,5 @@
     text-transform: uppercase;
     font-size: small;
     color: #666666;
+    font-weight: bold;
 }

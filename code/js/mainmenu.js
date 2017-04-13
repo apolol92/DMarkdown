@@ -10,7 +10,7 @@ function readFile(filepath, focusedWindow) {
       return;
     }
     else {
-      focusedWindow.send("info", { msg: data });
+      focusedWindow.send("info", { msg: data, filename: filepath });
     }
   });
 }

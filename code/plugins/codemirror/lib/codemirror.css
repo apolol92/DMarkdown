@@ -3,6 +3,8 @@
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
+  font-size: 1.5em;
+  border-right: solid #393939 1px;
   width: 100%;
   height: 100%;
   margin-top:0px;
@@ -20,7 +22,7 @@
 }
 
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  background-color: white; /* The little square between H and V scrollbars */
+  background-color:  #424242; /* The little square between H and V scrollbars */
 }
 
 /* GUTTER */

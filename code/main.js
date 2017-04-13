@@ -12,6 +12,7 @@ function createWindow() {
         {
             width: 1100,
             height: 800,
+            title:"DMarkdown"
         }
     );
     //and load the index.html of the app

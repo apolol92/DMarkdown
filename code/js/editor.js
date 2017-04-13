@@ -21,6 +21,7 @@ editor.on("cursorActivity", function() {
 });
 
 ipcRenderer.on('info', function (event, data) {
+    document.title = "DMarkdown - " + data.filename
     editor.setValue(data.msg);
 });
 
@@ -35,7 +36,7 @@ ipcRenderer.on("redo", function(event, data) {
 ipcRenderer.on("filename2Save", function (event, data) {
     const fs = require("fs");
     //fs.writeFile(data.msg, document.)
-
+    document.title = "DMarkdown - " + data.msg;
     fs.writeFile(data.msg, editor.getValue(), (err) => {
         if (err) {
             alert("An error ocurred creating the file " + err.message)
