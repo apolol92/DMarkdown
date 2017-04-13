@@ -1,0 +1,24 @@
+#navbar {
+    padding: 5px;
+    margin-bottom: 20px;
+    width:100%;
+}
+
+#navbarleft {
+    width: 50%;
+    float:left;
+
+    padding-left:25px;
+}
+
+#navbarright {
+    width: 50%;
+    float:left;
+    padding-left: 10px;
+}
+
+.title {
+    text-transform: uppercase;
+    font-size: small;
+    color: #9a9a9a;
+}

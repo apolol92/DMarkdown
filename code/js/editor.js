@@ -1,18 +1,15 @@
 const { ipcRenderer } = require('electron')
 var DRedoModule = require('./js/DRedo')
 var markdown = require("markdown").markdown;
-var styleTag = document.createElement("HTML"); //flask = new CodeFlask;
-var codeBox = document.getElementById("testmich");
-var dRedoer = new DRedoModule.DRedo();
-var wasRedo = false;
-var wasUndo = false;
+
 
 //document.querySelector('#previewField').appendChild(styleTag);
 var editor = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
     lineNumbers: true,
     mode: "markdown"    
 });
-editor.setSize("100%","100%");
+//editor.style("width:100%;height:100%;")
+//editor.setSize("100%","100%");
 editor.on("change", function() {
     var code = editor.getValue();
     console.log(code);
@@ -26,21 +23,19 @@ editor.on("change", function() {
     wasUndo = false;
 });
 
+
+
 ipcRenderer.on('info', function (event, data) {
     console.log(data.msg)
     editor.setValue(data.msg);
 });
 
 ipcRenderer.on("undo", function(event, data) {
-    var currentState = dRedoer.undoAction();
-    wasUndo = true;
-    editor.setValue(currentState);
+    editor.undo();
 });
 
 ipcRenderer.on("redo", function(event, data) {
-    var currentState = dRedoer.redoAction();
-    wasRedo = true;
-    editor.setValue(currentState);
+     editor.redo();
 });
 
 ipcRenderer.on("filename2Save", function (event, data) {
