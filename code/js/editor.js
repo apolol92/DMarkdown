@@ -6,18 +6,18 @@ var editor = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
     lineNumbers: true,
     mode: "markdown",
     theme: "icecoder",
-    scrollbarStyle:"simple"
+    scrollbarStyle: "simple"
 });
-editor.on("change", function() {
+editor.on("change", function () {
     var code = editor.getValue();
     var preview = document.getElementById("previewField");
     preview.innerHTML = markdown.toHTML(code);
     document.getElementById("cursorRow").innerHTML = editor.getCursor().line;
 });
 
-editor.on("cursorActivity", function() {
-    document.getElementById("cursorRow").innerHTML = editor.getCursor().line+1;
-    document.getElementById("cursorCol").innerHTML = editor.getCursor().ch+1;
+editor.on("cursorActivity", function () {
+    document.getElementById("cursorRow").innerHTML = editor.getCursor().line + 1;
+    document.getElementById("cursorCol").innerHTML = editor.getCursor().ch + 1;
 });
 
 ipcRenderer.on('info', function (event, data) {
@@ -25,12 +25,12 @@ ipcRenderer.on('info', function (event, data) {
     editor.setValue(data.msg);
 });
 
-ipcRenderer.on("undo", function(event, data) {
+ipcRenderer.on("undo", function (event, data) {
     editor.undo();
 });
 
-ipcRenderer.on("redo", function(event, data) {
-     editor.redo();
+ipcRenderer.on("redo", function (event, data) {
+    editor.redo();
 });
 
 ipcRenderer.on("filename2Save", function (event, data) {
@@ -48,8 +48,8 @@ ipcRenderer.on("filename2Save", function (event, data) {
 ipcRenderer.on("filename2export", function (event, data) {
     const fs = require("fs");
     //fs.writeFile(data.msg, document.)
-    var html = "<html>\n<head></head>\n<body>\n"+document.getElementById("previewField").innerHTML+"\n</body>\n</html>";
-    fs.writeFile(data.msg,html, (err) => {
+    var html = "<html>\n<head></head>\n<body>\n" + document.getElementById("previewField").innerHTML + "\n</body>\n</html>";
+    fs.writeFile(data.msg, html, (err) => {
         if (err) {
             alert("An error ocurred creating the file " + err.message)
             return;

@@ -7,12 +7,13 @@ let win;
 
 
 function createWindow() {
+    
     //Create the browser window
     win = new BrowserWindow(
         {
             width: 1100,
             height: 800,
-            title:"DMarkdown"
+            title: "DMarkdown"
         }
     );
     //and load the index.html of the app
@@ -21,7 +22,7 @@ function createWindow() {
         protocol: "file:",
         slashes: true
     }));
-    //win.openDevTools();
+    win.openDevTools();
     //Emitted when the window is closed..
     win.on("closed", () => {
         // Dereference the window object, usually you would store windows
@@ -32,11 +33,11 @@ function createWindow() {
     require('./js/mainmenu');
     globalShortcut.register('CommandOrControl+Z', () => {
         // Do stuff when Y and either Command/Control is pressed.
-        win.send("undo", { msg: "data" });  
+        win.send("undo", { msg: "data" });
     });
     globalShortcut.register('CommandOrControl+Y', () => {
         // Do stuff when Y and either Command/Control is pressed.
-        win.send("redo", { msg: "data" });  
+        win.send("redo", { msg: "data" });
     });
 }
 

@@ -73,7 +73,7 @@ const template = [
           dialog.showSaveDialog({
             filters: [
               { name: 'HTML', extensions: ['html'] },
-              { name: 'PDF', extensions: ['pdf'] }
+              //{ name: 'PDF', extensions: ['pdf'] }
             ]
           }, (fileName) => {
             if (fileName === undefined) {
