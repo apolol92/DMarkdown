@@ -1,0 +1,30 @@
+{
+    "preview_label": [
+        {
+            "de": "Vorschau",
+            "en": "Preview",
+            "fr-FR": "Avant-Première"
+        }
+    ],
+    "file_label": [
+        {
+            "de": "Datei",
+            "en": "File",
+            "fr-FR": "Fichier"
+        }
+    ],
+    "save_label": [
+        {
+            "de": "speichern",
+            "en": "save",
+            "fr-FR": "sauver"
+        }
+    ],
+    "save_as_label": [
+        {
+            "de": "speichern als",
+            "en": "save as",
+            "fr-FR": "économiser"
+        }
+    ]
+}

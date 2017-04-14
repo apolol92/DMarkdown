@@ -1,52 +1,22 @@
-var DRedoModule = require("../js/DRedo");
-describe("DRedo", function () {
-    it("should push an action on undo-stack..", function () {
-        var action = "Hallo Welt";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        expect(dRedoer.getUndoStackHead()).toEqual(action);
+var Inter = require("../js/Internationalizer.js");
+describe("Internationalizer", function () {
+    it("should print 'Vorschau'", function () {
+        var json = '{"preview_label":{"de":"Vorschau","en":"Preview","fr-FR": "Avant-Première"}}';
+        var DInternationalizer = new Inter.Internationalizer("de", json);
+        var result = DInternationalizer.print("preview_label");
+        expect(result).toEqual("Vorschau");
     });
-    it("should not push current action on undo-stack..", function() {
-        var action = "Hallo Welt";
-        var currentAction = "Hallo Welt Tes";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        dRedoer.controlledActionAdding(currentAction);
-        expect(dRedoer.getUndoStackHead()).toEqual(action);
+    it("should print 'Preview'", function () {
+        var json = '{"preview_label":{"de":"Vorschau","en":"Preview","fr-FR": "Avant-Première"}}';
+        var DInternationalizer = new Inter.Internationalizer("en", json);
+        var result = DInternationalizer.print("preview_label");
+        expect(result).toEqual("Preview");
     });
-    it("should push current action on undo-stack..", function() {
-        var action = "Hallo Welt";
-        var currentAction = "Hallo Welt! Das müsste auf den Stack!";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        dRedoer.controlledActionAdding(currentAction);
-        expect(dRedoer.getUndoStackHead()).toEqual(currentAction);
+    it("should print 'Avant-Première'", function () {
+        var json = '{"preview_label":{"de":"Vorschau","en":"Preview","fr-FR": "Avant-Première"}}';
+        var DInternationalizer = new Inter.Internationalizer("fr-FR", json);
+        var result = DInternationalizer.print("preview_label");
+        expect(result).toEqual("Avant-Première");
     });
-    it("should get 'Hallo Welt!'", function() {
-        var action = "Hallo Welt";
-        var currentAction = "Hallo Welt! Das müsste auf den Stack!";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        dRedoer.controlledActionAdding(currentAction);
-        var result = dRedoer.undoAction();
-        expect(result).toEqual(action);
-    });
-    it("should get 'Hallo Welt! Das müsste auf den Stack!'", function() {
-        var action = "Hallo Welt";
-        var currentAction = "Hallo Welt! Das müsste auf den Stack!";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        dRedoer.controlledActionAdding(currentAction);
-        dRedoer.undoAction();
-        var result = dRedoer.redoAction();
-        expect(result).toEqual(currentAction);
-    });
-    it("should get 'Hallo Welt!'", function() {
-        var action = "Hallo Welt";
-        var dRedoer = new DRedoModule.DRedo();
-        dRedoer.controlledActionAdding(action);
-        dRedoer.undoAction();
-        var result = dRedoer.redoAction();
-        expect(result).toEqual(action);
-    });
+
 });
