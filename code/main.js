@@ -13,7 +13,7 @@ function createWindow() {
         {
             width: 1100,
             height: 800,
-            title: "DMarkdown"
+            title: "DMarkdown",
         }
     );
     //and load the index.html of the app
@@ -22,7 +22,7 @@ function createWindow() {
         protocol: "file:",
         slashes: true
     }));
-    win.openDevTools();
+    //win.openDevTools();
     //Emitted when the window is closed..
     win.on("closed", () => {
         // Dereference the window object, usually you would store windows

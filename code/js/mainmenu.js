@@ -1,7 +1,7 @@
 const { Menu, electron, app, ipcMain } = require('electron')
 const inter = require("./Internationalizer");
 const fs = require("fs");
-var DInternationalizer = new inter.Internationalizer(app.getLocale(), fs.readFileSync("assets/Internationalizer.json"));
+var DInternationalizer = new inter.Internationalizer(app.getLocale(), "en", fs.readFileSync("assets/Internationalizer.json"));
 var currentFilename = undefined;
 
 
