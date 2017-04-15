@@ -1,8 +1,5 @@
 {
-  "name": "your-app",
+  "name": "DMarkdown",
   "version": "0.1.0",
-  "main": "main.js",
-  "dependencies": {
-    "electron-shortcut-normalizer": "^1.0.0"
-  }
+  "main": "main.js"
 }

@@ -29,7 +29,7 @@
       <span class="title">markdown</span>
     </div>
     <div id="navbarright">
-      <span class="title">vorschau</span>
+      <span class="title" id="previewSpan"></span>
     </div>
   </div>
   <div class="editor">
@@ -40,10 +40,18 @@
     <div id="previewField"></div>
   </div>
   <div class="footer">
-    Zeile <span id="cursorRow">1</span>, Spalte <span id="cursorCol">1</span> UTF-8
+    <span id="rowSpan"></span> <span id="cursorRow">1</span>, <span id="colSpan"></span> <span id="cursorCol">1</span> UTF-8
   </div>
   <script>
 
+  </script>
+  <script>
+    const inter = require("./js/Internationalizer");
+    const fs = require("fs");
+    var DInternationalizer = new inter.Internationalizer("de", fs.readFileSync("assets/Internationalizer.json"));
+    document.getElementById("previewSpan").innerHTML = DInternationalizer.print("preview_label");
+    document.getElementById("rowSpan").innerHTML = DInternationalizer.print("row_label");
+    document.getElementById("colSpan").innerHTML = DInternationalizer.print("col_label");
   </script>
   <script src="js/editor.js"></script>
 </body>

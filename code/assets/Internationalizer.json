@@ -1,0 +1,54 @@
+{
+    "preview_label": {
+        "de": "Vorschau",
+        "en": "Preview"
+    },
+    "file_label": {
+        "de": "Datei",
+        "en": "File"
+    },
+    "save_label": {
+        "de": "Speichern",
+        "en": "Save"
+    },
+    "save_as_label": {
+        "de": "Speichern unter",
+        "en": "Save as"
+    },
+    "export_label": {
+        "de": "Exportieren",
+        "en": "Export"
+    },
+    "load_label": {
+        "de": "Laden",
+        "en": "Load"
+    },
+    "edit_label": {
+        "de": "Bearbeiten",
+        "en": "Edit"
+    },
+    "undo_label": {
+        "de": "Rückgängig",
+        "en": "Undo"
+    },
+    "redo_label": {
+        "de": "Wiederholen",
+        "en": "Redo"
+    },
+    "help_label": {
+        "de": "Hilfe",
+        "en": "Help"
+    },
+    "doc_label": {
+        "de": "Markdown Dokumentation",
+        "en": "Markdown Documentation"
+    },
+    "row_label": {
+        "de": "Zeile",
+        "en": "Row"
+    },
+    "col_label": {
+        "de": "Spalte",
+        "en": "Column"
+    }
+}

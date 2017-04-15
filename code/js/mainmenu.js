@@ -1,5 +1,10 @@
-const { Menu, electron, app, ipcMain} = require('electron')
+const { Menu, electron, app, ipcMain } = require('electron')
+const inter = require("./Internationalizer");
+const fs = require("fs");
+var DInternationalizer = new inter.Internationalizer("de", fs.readFileSync("assets/Internationalizer.json"));
 var currentFilename = undefined;
+
+
 
 
 function readFile(filepath, focusedWindow) {
@@ -25,10 +30,10 @@ function sendFilenameToRendererForExporting(focusedWindow, filename) {
 
 const template = [
   {
-    label: 'Datei',
+    label: DInternationalizer.print("file_label"),
     submenu: [
       {
-        label: 'speichern',
+        label: DInternationalizer.print("save_label"),
         accelerator: 'Ctrl+S',
         click(item, focusedWindow) {
           const { dialog } = require("electron");
@@ -49,7 +54,7 @@ const template = [
         }
       },
       {
-        label: 'speichern als',
+        label: DInternationalizer.print("save_as_label"),
         accelerator: 'Ctrl+Shift+S',
         click(item, focusedWindow) {
           const { dialog } = require("electron");
@@ -66,7 +71,7 @@ const template = [
 
       },
       {
-        label: 'exportieren',
+        label: DInternationalizer.print("export_label"),
         accelerator: 'Ctrl+E',
         click(item, focusedWindow) {
           const { dialog } = require("electron");
@@ -86,8 +91,7 @@ const template = [
         },
       },
       {
-        label: 'laden',
-
+        label: DInternationalizer.print("load_label"),
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
           const { dialog } = require('electron')
@@ -105,18 +109,18 @@ const template = [
     ]
   },
   {
-    label: 'Bearbeiten',
+    label: DInternationalizer.print("edit_label"),
     submenu: [
       {
-        label: 'Rückgängig',
+        label: DInternationalizer.print("undo_label"),
         accelerator: 'Ctrl+Z',
         click(item, focusedWindow) {
-           console.log("undo");
-          focusedWindow.send("undo", { msg: "data" });  
+          console.log("undo");
+          focusedWindow.send("undo", { msg: "data" });
         }
       },
       {
-        label: 'Wiederholen',
+        label: DInternationalizer.print("redo_label"),
         accelerator: 'Ctrl+Y',
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
@@ -127,11 +131,21 @@ const template = [
     ]
   },
   {
-    label: 'Hilfe',
+    label: DInternationalizer.print("help_label"),
     submenu: [
       {
-        label: 'Markdown Dokumentation',
-        click() { require('electron').shell.openExternal('http://markdown.de/') }
+        label: DInternationalizer.print("doc_label"),
+        click() {
+          if(DInternationalizer.getLanguage()==="de") {
+            require('electron').shell.openExternal('http://markdown.de/');
+          }
+          else if(DInternationalizer.getLanguage()==="en") {
+            require('electron').shell.openExternal('https://guides.github.com/features/mastering-markdown/');
+          }
+          else {
+            require('electron').shell.openExternal('https://guides.github.com/features/mastering-markdown/');
+          }
+        }
       }
     ]
   }
