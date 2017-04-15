@@ -1,7 +1,7 @@
 const { Menu, electron, app, ipcMain } = require('electron')
 const inter = require("./Internationalizer");
 const fs = require("fs");
-var DInternationalizer = new inter.Internationalizer("de", fs.readFileSync("assets/Internationalizer.json"));
+var DInternationalizer = new inter.Internationalizer(app.getLocale(), fs.readFileSync("assets/Internationalizer.json"));
 var currentFilename = undefined;
 
 
@@ -15,6 +15,7 @@ function readFile(filepath, focusedWindow) {
       return;
     }
     else {
+      currentFilename = filepath;
       focusedWindow.send("info", { msg: data, filename: filepath });
     }
   });
