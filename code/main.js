@@ -14,6 +14,7 @@ function createWindow() {
             width: 1100,
             height: 800,
             title: "DMarkdown",
+            icon: path.join(__dirname, 'assets/images/logo/logo.png')
         }
     );
     //and load the index.html of the app
