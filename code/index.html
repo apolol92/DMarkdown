@@ -42,18 +42,26 @@
   <div class="footer">
     <span id="rowSpan"></span> <span id="cursorRow">1</span>, <span id="colSpan"></span> <span id="cursorCol">1</span> UTF-8
   </div>
-  <script>
-
-  </script>
+  <script src="js/editor.js"></script>
   <script>
     const inter = require("./js/Internationalizer");
     const fs = require("fs");
+    const { ipcRenderer } = require('electron')
+    var markdown = require("markdown").markdown;
     var DInternationalizer = new inter.Internationalizer(navigator.language, "en", fs.readFileSync("assets/Internationalizer.json"));
-    document.getElementById("previewSpan").innerHTML = DInternationalizer.print("preview_label");
-    document.getElementById("rowSpan").innerHTML = DInternationalizer.print("row_label");
-    document.getElementById("colSpan").innerHTML = DInternationalizer.print("col_label");
+    var previewField = document.getElementById("previewField");
+    var previewSpan = document.getElementById("previewSpan");
+    var cursorRow = document.getElementById("cursorRow");
+    var cursorCol = document.getElementById("cursorCol");
+
+    previewSpan.innerHTML = DInternationalizer.print("preview_label");
+    cursorRow.innerHTML = DInternationalizer.print("row_label");
+    cursorCol.innerHTML = DInternationalizer.print("col_label");
+
+    var DEditor = new Editor(document.getElementById("codeeditor"));
+    DEditor.editorEvents(previewField, cursorRow, cursorCol);
+    DEditor.editorExternCommunication(previewField);
   </script>
-  <script src="js/editor.js"></script>
 </body>
 
 </html>
