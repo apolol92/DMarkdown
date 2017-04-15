@@ -13,7 +13,6 @@ class Editor {
         this.editor.on("change", function () {
             var code = editor.getValue();
             previewField.innerHTML = markdown.toHTML(code);
-            //cursorRowSpan.innerHTML = editor.getCursor().line;
         });
 
         this.editor.on("cursorActivity", function () {
@@ -25,7 +24,7 @@ class Editor {
     editorExternCommunication(previewField) {
         var editor = this.editor;
         ipcRenderer.on('info', function (event, data) {
-            document.title = "DMarkdown - " + data.filename
+            document.title = "DMarkdown - " + data.filename;
             editor.setValue(data.msg);
         });
 
@@ -38,7 +37,6 @@ class Editor {
         });
 
         ipcRenderer.on("filename2Save", function (event, data) {
-            //fs.writeFile(data.msg, document.)
             document.title = "DMarkdown - " + data.msg;
             fs.writeFile(data.msg, editor.getValue(), (err) => {
                 if (err) {
@@ -49,7 +47,6 @@ class Editor {
         });
 
         ipcRenderer.on("filename2export", function (event, data) {
-            //fs.writeFile(data.msg, document.)
             var html = "<html>\n<head></head>\n<body>\n" + previewField.innerHTML + "\n</body>\n</html>";
             fs.writeFile(data.msg, html, (err) => {
                 if (err) {

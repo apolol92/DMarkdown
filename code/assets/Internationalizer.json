@@ -50,5 +50,9 @@
     "col_label": {
         "de": "Spalte",
         "en": "Column"
+    },
+    "untitled_label": {
+        "de": "Unbenannt",
+        "en": "Untitled"
     }
 }

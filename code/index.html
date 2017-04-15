@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DMarkdown - Untitled</title>
+  <title>DMarkdown</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <!-- Create a simple CodeMirror instance -->
@@ -49,14 +49,17 @@
     const { ipcRenderer } = require('electron')
     var markdown = require("markdown").markdown;
     var DInternationalizer = new inter.Internationalizer(navigator.language, "en", fs.readFileSync("assets/Internationalizer.json"));
+    document.title = "DMarkdown - " + DInternationalizer.print("untitled_label");
     var previewField = document.getElementById("previewField");
     var previewSpan = document.getElementById("previewSpan");
+    var rowSpan = document.getElementById("rowSpan");
+    var colSpan = document.getElementById("colSpan");
     var cursorRow = document.getElementById("cursorRow");
     var cursorCol = document.getElementById("cursorCol");
 
     previewSpan.innerHTML = DInternationalizer.print("preview_label");
-    cursorRow.innerHTML = DInternationalizer.print("row_label");
-    cursorCol.innerHTML = DInternationalizer.print("col_label");
+    rowSpan.innerHTML = DInternationalizer.print("row_label");
+    colSpan.innerHTML = DInternationalizer.print("col_label");
 
     var DEditor = new Editor(document.getElementById("codeeditor"));
     DEditor.editorEvents(previewField, cursorRow, cursorCol);

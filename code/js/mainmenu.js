@@ -1,25 +1,9 @@
-const { Menu, electron, app, ipcMain } = require('electron')
+const { Menu, electron, app, ipcMain, dialog, shell } = require('electron')
 const inter = require("./Internationalizer");
 const fs = require("fs");
 var DInternationalizer = new inter.Internationalizer(app.getLocale(), "en", fs.readFileSync("assets/Internationalizer.json"));
 var currentFilename = undefined;
 
-
-
-
-function readFile(filepath, focusedWindow) {
-  const fs = require('fs');
-  fs.readFile(filepath, 'utf-8', (err, data) => {
-    if (err) {
-      alert("Error while reading file..");
-      return;
-    }
-    else {
-      currentFilename = filepath;
-      focusedWindow.send("info", { msg: data, filename: filepath });
-    }
-  });
-}
 
 function sendFilenameToRenderer(focusedWindow, filename) {
   focusedWindow.send("filename2Save", { msg: filename });
@@ -37,7 +21,6 @@ const template = [
         label: DInternationalizer.print("save_label"),
         accelerator: 'Ctrl+S',
         click(item, focusedWindow) {
-          const { dialog } = require("electron");
           if (currentFilename == undefined) {
             dialog.showSaveDialog((fileName) => {
               if (fileName === undefined) {
@@ -58,7 +41,6 @@ const template = [
         label: DInternationalizer.print("save_as_label"),
         accelerator: 'Ctrl+Shift+S',
         click(item, focusedWindow) {
-          const { dialog } = require("electron");
           dialog.showSaveDialog((fileName) => {
             if (fileName === undefined) {
               console.log("You didn't save the file");
@@ -75,11 +57,9 @@ const template = [
         label: DInternationalizer.print("export_label"),
         accelerator: 'Ctrl+E',
         click(item, focusedWindow) {
-          const { dialog } = require("electron");
           dialog.showSaveDialog({
             filters: [
               { name: 'HTML', extensions: ['html'] },
-              //{ name: 'PDF', extensions: ['pdf'] }
             ]
           }, (fileName) => {
             if (fileName === undefined) {
@@ -95,16 +75,16 @@ const template = [
         label: DInternationalizer.print("load_label"),
         click(item, focusedWindow) {
           //if (focusedWindow) focusedWindow.webContents.toggleDevTools()
-          const { dialog } = require('electron')
           dialog.showOpenDialog((filenames) => {
             if (filenames === undefined) {
               alert("No file selected!");
             }
-            else {
-              readFile(filenames[0], focusedWindow);
+            else {      
+              currentFilename = filenames[0];
+              var data = fs.readFileSync(currentFilename, "utf-8");
+              focusedWindow.send("info", { msg: data, filename: currentFilename });
             }
           });
-          //focusedWindow.send("info",{msg:"Hello from main process"});
         }
       }
     ]
@@ -137,14 +117,14 @@ const template = [
       {
         label: DInternationalizer.print("doc_label"),
         click() {
-          if(DInternationalizer.getLanguage()==="de") {
-            require('electron').shell.openExternal('http://markdown.de/');
+          if (DInternationalizer.getLanguage() === "de") {
+            shell.openExternal('http://markdown.de/');
           }
-          else if(DInternationalizer.getLanguage()==="en") {
-            require('electron').shell.openExternal('https://guides.github.com/features/mastering-markdown/');
+          else if (DInternationalizer.getLanguage() === "en") {
+            shell.openExternal('https://guides.github.com/features/mastering-markdown/');
           }
           else {
-            require('electron').shell.openExternal('https://guides.github.com/features/mastering-markdown/');
+            shell.openExternal('https://guides.github.com/features/mastering-markdown/');
           }
         }
       }
