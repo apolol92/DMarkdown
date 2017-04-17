@@ -15,15 +15,22 @@
   <script type="text/javascript" src="plugins/codemirror/mode/markdown/markdown.js"></script>
   <script type="text/javascript" src="plugins/codemirror/addon/scroll/simplescrollbars.js"></script>
 
+  <!-- User defined stylesheets.. -->
+  <!-- General styles for the whole site.. -->
   <link rel="stylesheet" href="css/general.css">
+  <!-- Style for the navbar.. -->
   <link rel="stylesheet" href="css/navbar.css">
+  <!-- Style for the editor.. -->
   <link rel="stylesheet" href="css/editor.css">
+  <!-- Style for the preview area.. -->
   <link rel="stylesheet" href="css/preview.css">
+  <!-- Style for the footer.. -->
   <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
 <body>
+
   <div id="navbar">
     <div id="navbarleft">
       <span class="title">markdown</span>
@@ -32,16 +39,21 @@
       <span class="title" id="previewSpan"></span>
     </div>
   </div>
+  <!-- This div  contains the editor. The user can input his Markdown here. -->
   <div class="editor">
+    <!-- THe Textarea contains the written Markdown -->
     <textarea id="codeeditor"></textarea>
   </div>
+  <!-- This div contains the preview of the written Markdown -->
   <div class="preview">
     <!-- Preview-Area -->
     <div id="previewField"></div>
   </div>
+  <!-- This div shows the active cursor-row and the current cursor-column.. -->
   <div class="footer">
     <span id="rowSpan"></span> <span id="cursorRow">1</span>, <span id="colSpan"></span> <span id="cursorCol">1</span> UTF-8
   </div>
+  <!-- All editor functions goes here.. -->
   <script src="js/editor.js"></script>
   <script>
     const inter = require("./js/Internationalizer");
