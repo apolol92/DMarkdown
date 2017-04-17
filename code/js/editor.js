@@ -6,6 +6,10 @@
  * It communicates with the electron backendsystem..
  */
 class Editor {
+    /**
+     * This constructor binds the given textarea to the editor..
+     * @param {the textarea will be binded to the editor} editorTextArea 
+     */
     constructor(editorTextArea) {
         this.editor = CodeMirror.fromTextArea(editorTextArea, {
             lineNumbers: true,
@@ -14,7 +18,12 @@ class Editor {
             scrollbarStyle: "simple"
         });
     }
-
+    /**
+     * This method will add events to the current editor..
+     * @param {The field will show the translated Markdown as HTML} previewField 
+     * @param {This placeholder shows the current cursor-row} cursorRowSpan 
+     * @param {This placeholder show the current cursor-col} cursorColSpan 
+     */
     editorEvents(previewField, cursorRowSpan, cursorColSpan) {
         var editor = this.editor;
         this.editor.on("change", function () {
@@ -28,6 +37,10 @@ class Editor {
         });
     }
 
+/**
+ * This method creates a communication between the editor and the electron-backend..
+ * @param {The field will show the translated Markdown as HTML} previewField 
+ */
     editorExternCommunication(previewField) {
         var editor = this.editor;
         ipcRenderer.on('info', function (event, data) {
