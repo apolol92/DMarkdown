@@ -1,3 +1,10 @@
+/**
+ * @author Dennis Groß
+ * @date 14.04.2017
+ * This class makes the static html-editor dynamically.
+ * It adds change and cursoer events to the editor.
+ * It communicates with the electron backendsystem..
+ */
 class Editor {
     constructor(editorTextArea) {
         this.editor = CodeMirror.fromTextArea(editorTextArea, {

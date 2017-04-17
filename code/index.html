@@ -18,8 +18,8 @@
   <!-- User defined stylesheets.. -->
   <!-- General styles for the whole site.. -->
   <link rel="stylesheet" href="css/general.css">
-  <!-- Style for the navbar.. -->
-  <link rel="stylesheet" href="css/navbar.css">
+  <!-- Style for the headbar.. -->
+  <link rel="stylesheet" href="css/headbar.css">
   <!-- Style for the editor.. -->
   <link rel="stylesheet" href="css/editor.css">
   <!-- Style for the preview area.. -->
@@ -30,12 +30,16 @@
 </head>
 
 <body>
-
-  <div id="navbar">
-    <div id="navbarleft">
+  <!-- Headbar for showing Markdown and Preview headline -->
+  <div id="headbar">
+    <!-- Left headlinepart -->
+    <div id="headbarleft">
+      <!-- Markdown headline -->
       <span class="title">markdown</span>
     </div>
-    <div id="navbarright">
+    <!-- Right headlinepart -->
+    <div id="headbarright">
+      <!-- Preview headline -->
       <span class="title" id="previewSpan"></span>
     </div>
   </div>
@@ -56,25 +60,41 @@
   <!-- All editor functions goes here.. -->
   <script src="js/editor.js"></script>
   <script>
+    //Import the Internationlizer..
     const inter = require("./js/Internationalizer");
+    //Import File-System
     const fs = require("fs");
+    //Import the ipcRenderer for backend-communication..
     const { ipcRenderer } = require('electron')
+    //Import The Markdown-Parser
     var markdown = require("markdown").markdown;
+    //Creates the Intenationlizer for translation
     var DInternationalizer = new inter.Internationalizer(navigator.language, "en", fs.readFileSync("assets/Internationalizer.json"));
+    //Set the Title of DMarkdown.
     document.title = "DMarkdown - " + DInternationalizer.print("untitled_label");
+    //Get the previewField for adding translated markdown code here..
     var previewField = document.getElementById("previewField");
+    //Get the label of the previewField for correct headline-label
     var previewSpan = document.getElementById("previewSpan");
+    //Get the row-label for correct translation
     var rowSpan = document.getElementById("rowSpan");
+    //Get the column-label for corret translation
     var colSpan = document.getElementById("colSpan");
+    //Get the placeholder for showing the current cursor-row in the editor textarea
     var cursorRow = document.getElementById("cursorRow");
+    //Get the placeholder for showing the current cursor-column in the editor textarea
     var cursorCol = document.getElementById("cursorCol");
-
+    //Translate preview_label
     previewSpan.innerHTML = DInternationalizer.print("preview_label");
+    //Translate row_label
     rowSpan.innerHTML = DInternationalizer.print("row_label");
+    //Translate column_label
     colSpan.innerHTML = DInternationalizer.print("col_label");
-
+    //Create a dynamtic Markdown-Editor
     var DEditor = new Editor(document.getElementById("codeeditor"));
+    //Add Editor-Events
     DEditor.editorEvents(previewField, cursorRow, cursorCol);
+    //Add Editor-Communication to backend..
     DEditor.editorExternCommunication(previewField);
   </script>
 </body>

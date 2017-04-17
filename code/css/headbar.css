@@ -1,11 +1,11 @@
-#navbar {
+#headbar {
     padding: 5px;
     padding-bottom: 20px;
     background: #252526;
     width:100%;
 }
 
-#navbarleft {
+#headbarleft {
     width: 50%;
     float:left;
     background: transparent;
@@ -13,7 +13,7 @@
     border-right: solid #393939 1px;
 }
 
-#navbarright {
+#headbarright {
     width: 50%;
     float:left;
     background: transparent;
